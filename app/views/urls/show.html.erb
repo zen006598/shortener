@@ -1,10 +1,12 @@
-<div>
-  <div>
-    原始網址：<%= @url.original %>
+<div class='px-6 py-10 m-auto border rounded border-minor bg-minor bg-opacity-10'>
+  <div class='mb-4 w-96'>
+    <p class='break-words '>
+      原始網址：<%= @url.original %>
+    </p>
   </div>
 
   <div data-controller = 'clipboard'>
-    <input data-clipboard-target="url" type="text" value=<%="#{@short_url}"%> readonly class=''>
-    <button data-action="click->clipboard#copy">複製連結</button>
+    <input data-clipboard-target="url" type="text" value=<%="#{@short_url}"%> readonly class='w-64 h-8 -mr-1 rounded-l-lg border-major'>
+    <button class= 'px-2 py-1 text-white rounded-r-lg bg-major' data-action="click->clipboard#copy">複製連結</button>
   </div>
 </div> 

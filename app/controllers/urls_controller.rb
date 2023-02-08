@@ -12,7 +12,7 @@ class UrlsController < ApplicationController
 
       value = {original: @url.original}
       key = "#{@url.id}:#{@url.slug}"
-      $redis.hset(key, value)s
+      $redis.hset(key, value)
       expire(key)
       redirect_to @url
     else
