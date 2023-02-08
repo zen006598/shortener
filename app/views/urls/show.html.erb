@@ -1,0 +1,10 @@
+<div>
+  <div>
+    原始網址：<%= @url.original %>
+  </div>
+
+  <div data-controller = 'clipboard'>
+    <input data-clipboard-target="url" type="text" value=<%="#{@short_url}"%> readonly class=''>
+    <button data-action="click->clipboard#copy">複製連結</button>
+  </div>
+</div> 

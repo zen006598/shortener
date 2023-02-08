@@ -1,0 +1,10 @@
+<%= form_with model: @url do |form| %>
+  <div>
+    <%= form.label :original, '網址：' %>
+    <%= form.text_field :original %>
+  </div>
+
+  <div>
+    <%= form.submit '送出', class: 'border' %>
+  </div>
+<% end %>
