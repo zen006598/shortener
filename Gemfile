@@ -28,7 +28,11 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-retry'
+  gem 'shoulda-matchers', '~> 5.0'
+  gem "factory_bot_rails", "~> 6.2"
+  gem 'database_cleaner-active_record'
   gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
+  gem 'webdrivers', '~> 5.0'
 end

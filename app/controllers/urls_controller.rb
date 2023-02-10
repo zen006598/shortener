@@ -30,13 +30,8 @@ class UrlsController < ApplicationController
 
   def redirect
     key = $redis.keys("*#{params[:slug]}").first
-
-    if key
-      original = $redis.hget(key, "original")
-      redirect_to original, allow_other_host: true
-    else
-      redirect_to Url.find_by(slug: params[:slug]).original, allow_other_host: true || root_path
-    end
+    original = $redis.hget(key, "original") || Url.find_by!(slug: params[:slug]).original
+    redirect_to original, allow_other_host: true || root_path
   end
 
   private
