@@ -1,29 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe Url, type: :model do
-  describe '重複網址' do
+  describe 'When input url' do
+    let!(:url) { create(:url) }
 
-    before(:each) do
-      @url = create(:url)
+    it 'Sussecced' do
+      expect(Url.count).to eq 1
     end
 
-    it 'input the new url' do
-      create(:url)
-      expect(Url.count).to eq 2
-    end
-
-    it 'input the existing url' do
-      original = @url.original
-      Url.new(original: original)
+    it 'Failed' do
+      Url.new(original: url.original)
       expect(Url.count).to eq 1
     end
   end
 
-  describe '驗證' do
+  describe 'Validation' do
     it { should validate_presence_of(:original) }
-    it "Input original url" do
-      url = create(:url)
-      expect(url).to validate_uniqueness_of(:slug)
-    end
+    it {should validate_uniqueness_of(:slug)}
   end
 end

@@ -6,7 +6,7 @@
   </div>
 
   <div data-controller = 'clipboard'>
-    <input data-clipboard-target="url" type="text" value=<%="#{@short_url}"%> readonly class='w-64 h-8 -mr-1 rounded-l-lg border-major'>
+    <input data-clipboard-target="url" type="text" value=<%="#{@short_url}" %> id='url' readonly class='w-64 h-8 -mr-1 rounded-l-lg border-major'>
     <button class= 'px-2 py-1 text-white rounded-r-lg bg-major' data-action="click->clipboard#copy">複製連結</button>
   </div>
 </div> 

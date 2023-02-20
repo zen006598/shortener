@@ -2,18 +2,22 @@ require 'rails_helper'
 require 'capybara/rspec'
 
 feature "Shortener", type: :feature do
-  scenario "Shortens a URL" do
-    url = "https://stackoverflow.com/questions/70685399/ruby-on-rails-7-0-1-and-tailwind-3-tailwind-classes-are-not-being-displayed-in"
-    slug = SecureRandom.uuid[0..5]
-    visit root_path
-    fill_in "網址：", with: url
-    click_button "送出"
-    expect(page).to have_content("原始網址：#{url}")
+  let!(:url) {create(:url)}
+  describe 'When input URL' do
+    scenario "successed" do
+      visit root_path
+      fill_in "網址：", with: url.original
+      click_button "送出"
+      expect(page).to have_content("原始網址：#{url.original}")
+      expect(page.find("#url").value).to eq("http://127.0.0.1:3001/#{url.slug}")
+    end
   end
 
-  scenario "Visits a short link"  do
-    url = create(:url)
-    visit "http://localhost:3001/#{url.slug}"
-    expect(page).to have_current_path(url.original)
+  describe 'When visit original URL' do
+    scenario "successd" do
+      visit "http://localhost:3001/#{url.slug}"
+      expect(page).to have_current_path(url.original)
+    end
   end
+ 
 end
